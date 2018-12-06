@@ -340,27 +340,41 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     color: white;
     background:   #0c7aaf;
     padding: 0px 5px 0px 5px;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
     font-size: 14px;
     /*border-bottom: solid 2px dodgerBlue;
     border-top: solid 2px dodgerBlue;*/
     margin: 0px 5px 0px 5px;
     text-align: center;
     height: 36px;
+    border: solid 1px #94bace;
+    text-transform: uppercase;
 }
 
 .client-table tr {
     height: 30px;
 }
 
+#renewDate {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+@keyframes blinker {  
+    50% { opacity: 0.5; }
+  }
+
 .client-table td {
     color: white;
     text-align: center;
     font-weight: none;
-    padding: 0px 5px 0px 5px;
+    padding: 0px 10px 0px 10px;
     font-family: Arial, sans-serif;
     font-size: 12px;
     height: 50px;
+    border-left: solid 1px #545c61;
+    border-right: solid 1px #545c61;
 }
 
 .client-table tr:nth-child(even) td {
@@ -373,22 +387,47 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
 
 /* Client table row - edit button */
 .editButton {
-    height: 22px;
-    width: 60px;
-    background-color: #fe8b0c;
-    color: black;
+    //height: 22px;
+    //width: 60px;
+    //background-color: #fe8b0c;
+    color: white;
     border: none;
     transition: 0.3s ease;
-    border-radius: 3px;
-    font-size: 10px;
+    //border-radius: 3px;
+    font-size: 26px;
     text-transform: uppercase;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    color:  #fe8b0c;
 }
 
 .editButton:hover {
-    background-color: #e67d0d;
+    //background-color: ;
     transition: 0.3s ease;
 }
 
+.profileButton {
+    
+    /* Skyblue: #0c7aaf; */
+    /* Orange : #fe8b0c; */ 
+    color:#0c7aaf; 
+
+    transition: 0.3s ease;
+
+    font-size: 26px;
+
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+
+}
+
+.profileButton:hover {
+    transition: 0.3s ease;
+    //color: green;
+}
 /* ===========================================
     file: update about: UPDATE CLIENT DATA
 ============================================*/
