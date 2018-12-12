@@ -14,7 +14,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
     <script>
         var coll = document.getElementsByClassName("collapsible");
         var i;
@@ -76,6 +77,8 @@
         document.getElementById("myForm").style.display = "none";
         } 
     </script>
+
+   
 </head>
 <body>
     <div id="app">
@@ -104,6 +107,7 @@
                         &nbsp;
                     </ul>
 
+              
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -112,7 +116,30 @@
                             <!-- <li><a href="{{ route('register') }}">Register</a></li>-->
                         @else
                             <li><a class="menu-link" href="{{ route('home') }}"><i class="fa fa-home"></i></a></li>
-                            <li><a class="menu-link" href="{{ route('insert') }}"><i class="fa fa-plus-circle"></i></a></li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="menu-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    <i class="fa fa-plus-circle"></i> 
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('insert') }}">
+                                            Εισαγωγή Πελάτη
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('insertNewCompany') }}">
+                                            Εισαγωγή Επιχείρησης
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('insertNewService') }}">
+                                            Εισαγωγή Υπηρεσίας
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

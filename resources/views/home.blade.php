@@ -30,42 +30,40 @@
                     <!-- Output the total number of clients found -->
                     <!-- <h4>Σύνολο πελατών: <?php //echo $totalClients ?> </h4> -->
                    
+
                     <!-- Display all the clients info -->
                     <table class="client-table">
                         <thead>
                             <tr >
-                                <th colspan="2" rowspan="2"></th>
-                                
-                                <th style="font-weight: bold;" colspan="4">Στοιχεια Πελατη</th>
-                                <th style="font-weight: bold;" class="companyTableBar" colspan="4">Στοιχεια Επιχειρησης</th>
                                 <th colspan="2"></th>
+                                
+                                <th style="font-weight: bold;" colspan="5">Στοιχεια Πελατη</th>
+                                <!--<th style="font-weight: bold;" class="companyTableBar" colspan="4">Στοιχεια Επιχειρησης</th>-->
+                                <!--<th rowspan="2">Ανανεωση </br>Συνδρομής</br>(Y-m-d)</th>-->
                             </tr>
                             <tr>
-                               
-                               
-                                <th>ID</th>
-                                <th>ονομα</th>
-                                <th>Επωνυμο</th>
-                                <th>Email</th>
-                                <th>Τηλ (κιν)</th>
-                                <th>Τηλ (σταθ)</th>
-                                <th>Διευθυνση</th>
-                                <th>Επωνυμια</th>
-                                <th>Ιστοσελιδα</th>
-                                <th>Ανανεωση (Y-m-d)</th>
+                                <th>PROFILE</th>
+                                <th>EDIT</th>
+                                <th> <strong>ID</strong></th>
+                                <th><strong>ονομα</strong></th>
+                                <th><strong>Επωνυμο</strong></th>
+                                <th><strong>Email</strong></th>
+                                <th><strong>κινητο</strong></th>
+
+                                
                             </tr>
                         </thead> 
                         <tbody>
                             @for ($i = 0; $i < $totalClients; $i++) 
-                            <tr>
-                                <td>
+                            <tr> <!-- style="background:   #0c7aaf; border: solid 1px #94bace;" -->
+                                <td >
                                     <form method="POST" action="{{URL::to('/profile')}}">
                                         {{csrf_field()}}
                                         <input type="hidden" name="rowId" value="<?php echo $i+1; ?>">
                                         <button type="submit" class="profileButton"><i class="fa fa-user" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
-                                <td>
+                                <td  >
                                     <form method="POST" action="{{URL::to('/update')}}">
                                         {{csrf_field()}}
                                         <input type="hidden" name="rowId" value="<?php echo $i+1; ?>">
@@ -73,31 +71,44 @@
                                     </form>
                                 </td>
 
-                                <td> <?php echo $data[$i]->clientId; ?> </td>
+                                <td> <strong><?php echo $data[$i]->clientId; ?></strong> </td>
                                 <td> <?php echo $data[$i]->clientFirstname; ?> </td>
                                 <td> <?php echo $data[$i]->clientSurname; ?> </td>
                                 <td> <?php echo $data[$i]->clientEmail; ?> </td>
                                 <td> <?php echo $data[$i]->clientMobile; ?> </td>
-                                <td> <?php echo $data[$i]->clientPhone; ?> </td>
-                                <td> <?php echo $data[$i]->clientAdrress; ?> </td>
-                                <td> <?php echo $data[$i]->companyName; ?> </td>
-                                <td > <a target="_blank" href="https://www.<?php echo $data[$i]->websiteURL; ?>"><i class="fa fa-globe fa-2x" aria-hidden="true"></i> </a> </td>
+
+                                
+                                
+                                <!--<td > <a target="_blank" href="https://www.<?php //echo $data[$i]->websiteURL; ?>"><i class="fa fa-globe fa-2x" aria-hidden="true"></i> </a> </td>-->
 
                                 <?php
                                     // Get current date
-                                    $cDate = date('Y-m-d');
-                                    $cTime = strtotime($cDate);
-                                    // Get renew date
-                                    $rDate = $data[$i]->renewDate;
-                                    $rTime = strtotime($rDate);
-                                    $secs =  $cTime -  $rTime;
-                                    $days = $secs / 86400;
+                                    //$cDate = date('Y-m-d');
+                                    //$cTime = strtotime($cDate);
+                                    //echo  "</br>";
 
-                                    if( $days < 30) {
-                                        echo "<td style=\"background: red; color: white; animation: blinker 1s linear infinite;\" id=\"renewDate\">" . $rDate . "</td>";
-                                    }else {
-                                        echo "<td id=\"renewDate\">" . $rDate . "</td>";
-                                    }
+                                    // Get renew date
+                                    //$rDate = $data[$i]->renewDate;
+                                    //$rTime = strtotime($rDate);
+                                    //echo $rTime . "</br>";
+
+                                    //$x = date('2018-12-19');
+                                    //$y = strtotime($x);
+                                    //echo $y . "</br>";
+
+                                    //echo ($cTime - $y) / 86400;
+
+                                    //$secs = $cTime - $rTime;
+                                    //echo $secs . "</br>";
+
+                                    //$days = $secs / 86400;
+                                    //echo $days . "</br>";
+
+                                    //if( ($days  < 30) && ($days > -30) ) {
+                                    //    echo "<td style=\"background: red; color: white; animation: blinker 1s linear infinite;\" id=\"renewDate\">" . $rDate . "</td>";
+                                    //}else {
+                                    //    echo "<td id=\"renewDate\">" . $rDate . "</td>";
+                                    //}
                                 ?>
                                 
                             </tr>

@@ -29,28 +29,43 @@ class InsertController extends Controller
 
     public function insertNewClient(Request $request)
     {
-        $result=DB::insert("INSERT INTO clients(`clientId`, `clientFirstname`, `clientSurname`, `clientEmail`, `clientMobile`, `clientPhone`, `clientAdrress`, 
-        `companyName`, `companyType`, `services`, `websiteURL`, `renewDate`, `totalPrice`, `deposit`, 
-        `balance`, `serverPrice`, `comments`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+
+        // Insert new client
+        $result=DB::insert("INSERT INTO clients(`clientId`, `clientFirstname`, `clientSurname`, `clientEmail`, `clientMobile`) VALUES(?, ?, ?, ?, ?)", [
         $request->input('clientId'),
         $request->input('clientFirstname'),
         $request->input('clientSurname'),
         $request->input('clientEmail'),
-        $request->input('clientMobile'),
-        $request->input('clientPhone'),
-        $request->input('clientAdrress'),
+        $request->input('clientMobile')]);
+
+        // Insert new company
+        $resultCompanies=DB::insert("INSERT INTO companies(`client_id`, `name`, `type`, `phone`, `email`, `location`, `website`, `comments`) VALUES(?, ?, ?, ?, ?, ?, ?, ?)", [
+        $request->input('clientId'),       
         $request->input('companyName'),
         $request->input('companyType'),
-        $request->input('services'),
+        $request->input('clientPhone'),
+        $request->input('companyEmail'),
+        $request->input('clientAdrress'),
         $request->input('websiteURL'),
-        $request->input('renewDate'),
-        $request->input('totalPrice'),
-        $request->input('deposit'),
-        $request->input('balance'),
-        $request->input('serverPrice'),
         $request->input('comments')]);
 
-        if($result == 1) {
+        // Find the laster company ID and increase by one
+        $latestID = DB::select('select id from companies order by id DESC');
+        $newCompanyId = (int)$latestID[0]->id;
+
+        $resultServices=DB::insert("INSERT INTO services(`company_id`, `name`, `type`, `renew_date`, `total_cost`, `balance`, `deposit`, `maintenance_cost`, `comments`, `client_id`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
+        $newCompanyId,       
+        $request->input('serviceName'),
+        $request->input('services'),
+        $request->input('renewDate'),
+        $request->input('totalPrice'),
+        $request->input('balance'),
+        $request->input('deposit'),
+        $request->input('serverPrice'),
+        $request->input('comments'),
+        $request->input('clientId')]);
+
+        if( ($result == 1) && ($resultCompanies == 1) && ($resultServices == 1) ) {
             echo "New client added to the database. You can go back now.";
             ?><form action="/home" method="get">
                 <input type="submit" value="Go back" />

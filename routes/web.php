@@ -30,13 +30,21 @@ Route::post('/insert', 'InsertController@insertNewClient')->name('store');
 
 /* Route for displaying the client insert form */
 Route::get('/insert', 'InsertController@index')->name('insert');
+Route::get('/insertNewCompany', 'InsertNewCompanyController@index')->name('insertNewCompany');
+Route::post('/insertNewCompany', 'InsertNewCompanyController@insertNewCompany')->name('insertNewCompany');
+Route::get('/insertNewService', 'InsertNewServiceController@index')->name('insertNewService');
+Route::post('/insertNewService', 'InsertNewServiceController@insertNewService')->name('insertNewService');
 
 /* Route for updaing the selected client */
 Route::post('/update', 'ClientController@update')->name('update');
 Route::post('/updateClient', 'ClientController@updateClient')->name('updateClient');
 
 /* Route for displaying the client insert form */
-Route::get('/update', 'InsertController@index')->name('update');
+//Route::get('/update', 'InsertController@index')->name('update');
+
+/* Route for displaying the client insert form */
+//Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/profile', 'ProfileController@update')->name('profile');
 
 /* Route when no file is specified, go to the home page with the client table data */
 Route::post('/', 'HomeController@index')->name('home');
