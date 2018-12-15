@@ -7,7 +7,7 @@
             <div class="section-area">
                 <!-- Section heading with the bottom line divider -->
                 <div class="section-heading">
-                    <h1>Εισαγωγή Πελάτη</h1>
+                    <h1>Εισαγωγή Νέου Πελάτη</h1>
                     <div class="section-heading-divider"></div>
                 </div>
 
@@ -30,36 +30,42 @@
                                         <!-- Get the latest ID and create a new one -->
                                         <?php
                                             $latestID = DB::select('select clientId from clients order by clientId DESC');
-                                            $newId = (int)$latestID[0]->clientId + 1;
+
+                                            // Check if this is the first record. If it is then set id to 50 (no reason).
+                                            if ($latestID == null) {
+                                                $newId = 50;
+                                            }else {
+                                                $newId = (int)$latestID[0]->clientId + 1;
+                                            }
+                                           
                                         ?>
-                                        <input type="text" name="clientId" value="<?php echo $newId;?>">
+                                        <input type="text" name="clientId" value="<?php echo $newId; ?>">
                                         <i class="fa fa-id-card fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">ID:</span></i>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientFirstname" placeholder="Πληκτρολογήσε το όνομα...">
+                                        <input type="text" name="clientFirstname" placeholder="Πληκτρολόγησε το όνομα...">
                                         <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Όνομα:</span></i>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientSurname" placeholder="Πληκτρολογήσε το επώνυμο...">
+                                        <input type="text" name="clientSurname" placeholder="Πληκτρολόγησε το επώνυμο...">
                                         <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Επώνυμο:</span></i>
                                     </div>
                                 </td>
                             </tr>
-                            
                             <tr>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientEmail" placeholder="Πληκτρολογήσε το κυρίως e-mail...">
+                                        <input type="text" name="clientEmail" placeholder="Πληκτρολόγησε το κυρίως e-mail...">
                                         <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Email:</span></i>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientMobile" placeholder="Πληκτρολογήσε τον αριθμό του κινητού...">
+                                        <input type="text" name="clientMobile" placeholder="Πληκτρολόγησε τον αριθμό του κινητού...">
                                         <i class="fa fa-mobile fa-lg fa-fw"  aria-hidden="true"><span class="clientFieldText">Κινητό:</span></i>
                                     </div>
                                 </td>
@@ -71,33 +77,48 @@
                             <tr>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientPhone" placeholder="Πληκτρολογήσε τον αριθμό του σταθερού...">
-                                        <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Σταθερό:</span></i>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="inputWithIcon">
-                                        <input type="text" name="clientAdrress" placeholder="Πληκτρολογήσε την διεύθυνση...">
-                                        <i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Διεύθυνση:</span></i>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="inputWithIcon">
-                                        <input type="text" name="companyName" placeholder="Πληκτρολογήσε την επωνυμία της επιχείρησης...">
+                                        <input type="text" name="companyName" placeholder="Επωνυμία της επιχείρησης...">
                                         <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Επωνυμία:</span></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="companyType" placeholder="Τύπος της επιχείρησης...">
+                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Τύπος:</span></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="clientPhone" placeholder="Σταθερό τηλέφωνο της επιχείρησης...">
+                                        <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Σταθερό:</span></i>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="companyType" placeholder="Πληκτρολογήσε τον τύπο της επιχείρησης...">
-                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Τύπος:</span></i>
-                                    </div></td>
+                                        <input type="text" name="companyEmail" placeholder="Πληκτρολόγησε το e-mail thw επιχείρησης...">
+                                        <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Email:</span></i>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="websiteURL" placeholder="Πληκτρολογήσε το url της ιστοσελίδας...">
+                                        <input type="text" name="clientAdrress" placeholder="Διεύθυνση της επιχείρησης...">
+                                        <i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Διεύθυνση:</span></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="websiteURL" placeholder="URL της ιστοσελίδας της επιχείρησης...">
                                         <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Ιστότοπος:</span></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="companyComments" placeholder="Πληκτρολόγησε σχόλια για την επιχείρησης...">
+                                        <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Σχόλια:</span></i>
                                     </div>
                                 </td>
                             </tr>
@@ -108,24 +129,30 @@
                             <tr>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="services" placeholder="Πληκτρολογήσε τις παρωχημένες υπηρεσίες...">
-                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Υπηρεσίες:</span></i>
+                                        <input type="text" name="serviceName" placeholder="Πληκτρολόγησε το όνομα της υπηρεσίας...">
+                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Όνομα:</span></i>
                                     </div>
                                 </td>
                                 <td>   
                                     <div class="inputWithIcon">
-                                        <input type="text" name="totalPrice" placeholder="Πληκτρολογήσε την συνολική τιμή...">
+                                        <input type="text" name="services" placeholder="Πληκτρολόγησε τον τύπο της υπηρεσίας...">
+                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Τύπος:</span></i>
+                                    </div>
+                                </td>
+                                <td>   
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="totalPrice" placeholder="Πληκτρολόγησε την συνολική τιμή...">
                                         <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συνολo:</span></i>
-                                    </div>
-                                </td>
-                                <td>   
-                                    <div class="inputWithIcon">
-                                        <input type="text" name="deposit" placeholder="Πληκτρολογήσε την προκαταβολή...">
-                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Προκαταβολή:</span></i>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
+                                <td>   
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="deposit" placeholder="Πληκτρολογήσε την προκαταβολή...">
+                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Προ/βολή:</span></i>
+                                    </div>
+                                </td>
                                 <td>
                                     <div class="inputWithIcon">
                                         <input type="text" name="balance" placeholder="Πληκτρολογήσε το υπόλοιπο...">
@@ -134,10 +161,13 @@
                                 </td>
                                 <td> 
                                     <div class="inputWithIcon">
-                                        <input type="text" name="serverPrice" placeholder="Πληκτρολογήσε το κόστος συντήρησης του server...">
-                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συντήρηση:</span></i>
+                                        <input type="text" name="serverPrice" placeholder="Πληκτρολογήσε το ετήσιο κόστος συνδρομής...">
+                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Κόστος Συνδρομής:</span></i>
                                     </div>
                                 </td>
+                            </tr>
+                            <tr>
+                               
                                 <td>     
                                     <div class="inputWithIcon">
                                         <input type="text" name="comments" placeholder="Πληκτρολογήσε σχόλια κ σημειώσεις...">

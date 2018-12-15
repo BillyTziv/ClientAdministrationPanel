@@ -50,26 +50,12 @@ class ClientController extends Controller
         //echo "END: " . $transDate;
 
 
-        $result=DB::update("UPDATE clients SET `clientId`=?, `clientFirstname`=?, `clientSurname`=?, `clientEmail`=?, `clientMobile`=?, `clientPhone`=?, `clientAdrress`=?, 
-        `companyName`=?, `companyType`=?, `services`=?, `websiteURL`=?, `renewDate`=?, `totalPrice`=?, `deposit`=?, 
-        `balance`=?, `serverPrice`=?, `comments`=? WHERE `id`='" . $request->input('selRowId') ."'", [
+        $result=DB::update("UPDATE clients SET `clientId`=?, `clientFirstname`=?, `clientSurname`=?, `clientEmail`=?, `clientMobile`=? WHERE `id`='" . $request->input('selRowId') ."'", [
         $request->input('clientId'),
         $request->input('clientFirstname'),
         $request->input('clientSurname'),
         $request->input('clientEmail'),
-        $request->input('clientMobile'),
-        $request->input('clientPhone'),
-        $request->input('clientAdrress'),
-        $request->input('companyName'),
-        $request->input('companyType'),
-        $request->input('services'),
-        $request->input('websiteURL'),
-        $transDate,
-        $request->input('totalPrice'),
-        $request->input('deposit'),
-        $request->input('balance'),
-        $request->input('serverPrice'),
-        $request->input('comments')]);
+        $request->input('clientMobile')]);
 
         if($result == 1) {
             return view('home');
