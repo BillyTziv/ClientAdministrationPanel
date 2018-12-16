@@ -34,13 +34,6 @@
                     <!-- Display all the clients info -->
                     <table class="client-table">
                         <thead>
-                            <tr >
-                                <th colspan="2"></th>
-                                
-                                <th style="font-weight: bold;" colspan="5">Στοιχεια Πελατη</th>
-                                <!--<th style="font-weight: bold;" class="companyTableBar" colspan="4">Στοιχεια Επιχειρησης</th>-->
-                                <!--<th rowspan="2">Ανανεωση </br>Συνδρομής</br>(Y-m-d)</th>-->
-                            </tr>
                             <tr>
                                 <th>PROFILE</th>
                                 <th>EDIT</th>
