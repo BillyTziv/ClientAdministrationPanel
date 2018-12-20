@@ -56,13 +56,13 @@
                             <tr>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="serviceName" placeholder="Όνομα υπηρεσίας...">
-                                        <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Όνομα:</span></i>
+                                        <input type="text" name="serviceName" placeholder="Πληκτρολόγησε μια περιγραφή για την υπηρεσία...">
+                                        <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Περιγραφή:</span></i>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="serviceType" placeholder="Τύπος της υπηρεσίας...">
+                                        <input type="text" name="serviceType" placeholder="Πληκτρολόγησε τον τύπο της υπηρεσίας...">
                                         <i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Τύπος:</span></i>
                                     </div>
                                 </td>
@@ -78,18 +78,18 @@
                             <tr>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="totalCost" placeholder="Συνολικό κόστος...">
+                                        <input type="text" name="totalCost" placeholder="Πληκτρολόγησε το συνολικό κόστος της υπηρεσίας...">
                                         <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συνολο:</span></i>
                                     </div></td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="balance" placeholder="Υπόλοιπο κόστους...">
+                                        <input type="text" name="balance" placeholder="Πληκτρολόγησε το υπόλοιπο ποσό...">
                                         <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Υπόλοιπο:</span></i>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="deposit" placeholder="Προκαταβολή...">
+                                        <input type="text" name="deposit" placeholder="Πληκτρολόγησε το ποσό της προκαταβολής...">
                                         <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Προ/βολη:</span></i>
                                     </div>
                                 </td>
@@ -99,13 +99,13 @@
                             <tr>
                             <td>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="comments" placeholder="Σχόλια...">
+                                        <input type="text" name="comments" placeholder="Πληκτρολόγησε αν υπάρχουν καθόλου σχόλια ...">
                                         <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Σχολια:</span></i>
                                     </div>
                                 </td>
                                 <td>     
                                     <div class="inputWithIcon">
-                                        <input type="text" name="maintenanceCost" placeholder="Συντήρηση...">
+                                        <input type="text" name="maintenanceCost" placeholder="Πληκτρολόγησε το ποσό της ετήσιας συντήρησης...">
                                         <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συντήρηση:</span></i>
                                     </div>
                                 </td>

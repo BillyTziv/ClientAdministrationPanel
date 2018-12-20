@@ -162,7 +162,7 @@
                                 <td> 
                                     <div class="inputWithIcon">
                                         <input type="text" name="serverPrice" placeholder="Πληκτρολογήσε το ετήσιο κόστος συνδρομής...">
-                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Κόστος Συνδρομής:</span></i>
+                                        <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συνδρομή:</span></i>
                                     </div>
                                 </td>
                             </tr>

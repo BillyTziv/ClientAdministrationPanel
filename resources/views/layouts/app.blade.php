@@ -9,7 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
-    <title>CAP Service</title>
+    <title>CodeX - Administration Panel</title>
+
+    <link rel="shortcut icon" href="{{{ asset('favicon.png') }}}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -116,7 +118,7 @@
                             <!-- <li><a href="{{ route('register') }}">Register</a></li>-->
                         @else
                             <li><a class="menu-link" href="{{ route('home') }}"><i class="fa fa-home"></i></a></li>
-                            
+                            <li><a class="menu-link" href="{{ route('offers') }}"><i class="fa fa-gift" aria-hidden="true"></i></a></li>
                             <li class="dropdown">
                                 <a href="#" class="menu-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     <i class="fa fa-plus-circle"></i> 

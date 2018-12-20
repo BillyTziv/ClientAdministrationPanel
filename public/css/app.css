@@ -138,6 +138,7 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     box-shadow: 0 0 8px 0 #0c7aaf;;
 }
 
+
 .inputWithIcon input[type="text"], input[type="tel"], input[type="url"], input[type="url"] {
     padding-left: 125px;
 
@@ -186,7 +187,7 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
 ============================================*/
 .submitButton {
     height: 32px;
-    width: 220px;
+    width: 150px;
     background-color: #af410c;
     color: white;
     border: none;
@@ -201,6 +202,27 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     background-color: #da7407;
     transition: 0.3s ease;
 }
+
+.homeButton {
+    height: 32px;
+    width: 150px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+    border-radius: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.homeButton:hover {
+    background-color: rgb(104, 8, 8);
+    transition: 0.3s ease;
+}
+
 
 /* ===========================================
     POP UP box on client edit function
@@ -300,7 +322,6 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     file: all about: main sections
 ============================================*/
 .section-area {
-    background: #1e1e1e;
 }
 
 .section-heading {
@@ -336,53 +357,46 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     transition: all 0.4s ease-out;
 }
 
-/* ===========================================
-    file: home about: CLIENT DATA TABLE
-============================================*/
+/* ==========================================================
+    FILE:   home.blade.php
+    ABOUT:  Client Table
+===========================================================*/
 .client-table {
-    border: solid 1px  #0c7aaf;
+    /* Align the table at the center of the page */
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+
+    /* whine neon in the back of the table */
+    box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.63);
 }
 
 .client-table th {
+
     color: white;
-    background:   #0c7aaf;
-    padding: 0px 5px 0px 5px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    /*border-bottom: solid 2px dodgerBlue;
-    border-top: solid 2px dodgerBlue;*/
-    margin: 0px 5px 0px 5px;
-    text-align: center;
-    height: 36px;
-    border: solid 1px #94bace;
-    text-transform: uppercase;
-}
-
-.client-table tr {
-    height: 30px;
-}
-
-#renewDate {
     font-weight: bold;
     font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+
+    /* About the div */
+    height: 36px;
+    padding: 0px 15px 0px 15px;
+    background:   #0c7aaf;
+    border: solid 2px #94bace;
 }
 
-@keyframes blinker {  
-    50% { opacity: 0.5; }
-  }
-
 .client-table td {
+    /* About the text */
     color: white;
     text-align: center;
     font-weight: none;
-    padding: 0px 10px 0px 10px;
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 13px;
-    height: 50px;
+
+    /* About the div */
+    height: 40px;
+    padding: 0px 10px 0px 10px;
     border-left: solid 1px #545c61;
     border-right: solid 1px #545c61;
 }
@@ -395,6 +409,56 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     background-color: rgb(30, 30, 30);
 }
 
+#renewDate {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+@keyframes blinker {  
+    50% { opacity: 0.5; }
+}
+
+.tableBar {
+    width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.searchbox {
+    position: relative;
+    width: 145px;
+    transition: 0.5s;
+}
+
+.searchbox  input:hover, .searchbox input:focus {
+    position: relative;
+    width: 300px !important;
+    transition: 0.5s;
+}
+
+.searchbox i {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    padding: 5px 15px 0px 15px;
+    color: #0c7aaf;
+    transition: 0.3s;
+}
+
+#myInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.totalClients {
+    color: rgba(255, 255, 255, 0.808);
+    font-size: 16px;
+    padding-left: 320px;
+}
 /* ===========================================
 file: home about: table EDIT and PROFILE ICONS
 ============================================*/
@@ -506,3 +570,10 @@ file: home about: table EDIT and PROFILE ICONS
     //background-color: #FFCF8B;
     transition: 0.5s ease;
 }
+
+
+/* Clients Administration Page - ID header text*/
+.clientsTableID {
+
+}
+

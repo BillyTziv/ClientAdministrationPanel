@@ -29,21 +29,37 @@
 
                     <!-- Output the total number of clients found -->
                     <!-- <h4>Σύνολο πελατών: <?php //echo $totalClients ?> </h4> -->
-                   
+                    <div class="tableBar">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="searchbox">
+                                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Αναζήτηση με το επώνυμο...">
+                                        <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+                                    </div>
+                                </td>
+                                
+                                <td class="totalClients">ΣΥΝΟΛΙΚΟ ΠΕΛΑΤΩΝ: <span style="font-size: 22px; color: white; font-weight: bold;"><?php echo $totalClients; ?></span></td>
+                        
+                            </tr>
+                        </table>
+                    </div>
 
                     <!-- Display all the clients info -->
-                    <table class="client-table">
+                    <table id="myTable" class="client-table">
                         <thead>
+                            
                             <tr>
-                                <th>PROFILE</th>
-                                <th>EDIT</th>
+                                <th></th>
+                                <th></th>
                                 <th> <strong>ID</strong></th>
                                 <th><strong>ονομα</strong></th>
                                 <th><strong>Επωνυμο</strong></th>
                                 <th><strong>Email</strong></th>
                                 <th><strong>κινητο</strong></th>
-
-                                
+                                <th><strong>Συνολικος Τζιρος</strong></th>
+                                <th><strong># επιχ</strong></th>
+                                <th><strong>Κατασταση</strong></th>
                             </tr>
                         </thead> 
                         <tbody>
@@ -56,7 +72,7 @@
                                         <button type="submit" class="profileButton"><i class="fa fa-user" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
-                                <td  >
+                                <td>
                                     <form method="POST" action="{{URL::to('/update')}}">
                                         {{csrf_field()}}
                                         <input type="hidden" name="rowId" value="<?php echo $i+1; ?>">
@@ -64,14 +80,31 @@
                                     </form>
                                 </td>
 
-                                <td> <strong><?php echo $data[$i]->clientId; ?></strong> </td>
+                                <td class="clientsTableID"> <strong><?php echo $data[$i]->clientId; ?></strong> </td>
                                 <td> <?php echo $data[$i]->clientFirstname; ?> </td>
                                 <td> <?php echo $data[$i]->clientSurname; ?> </td>
                                 <td> <?php echo $data[$i]->clientEmail; ?> </td>
                                 <td> <?php echo $data[$i]->clientMobile; ?> </td>
+                                
+                                
+                                <td>
+                                    <?php // Client total turnover
+                                        $selectedClient = $data[$i]->clientId;
+                                        $clientCompanies = DB::select("select * from companies where `client_id`='$selectedClient'");
+                                        $clientTotalCompanies = count($clientCompanies);
 
-                                
-                                
+                                        // Go through all of the client comapanies and count the total ammount of euro.
+                                        $totalAmmount = 0;
+                                        foreach ($clientCompanies as $com) {
+                                            $companyData = DB::select("select SUM(total_cost) as total_cost from services where `company_id`='$com->id'");
+                                            //print_r ($companyData);
+                                            $totalAmmount = $totalAmmount + $companyData[0]->total_cost;
+                                        }
+                                        echo $totalAmmount . " &euro;";
+                                    ?>
+                                </td>
+                                <td> <?php echo $clientTotalCompanies; ?> </td>
+                                <td> <?php echo "ΕΝΕΡΓΟΣ"; ?> </td>
                                 <!--<td > <a target="_blank" href="https://www.<?php //echo $data[$i]->websiteURL; ?>"><i class="fa fa-globe fa-2x" aria-hidden="true"></i> </a> </td>-->
 
                                 <?php
@@ -109,6 +142,68 @@
                             @endfor
                         </tbody>
                     </table> <!-- End of client-table -->
+
+                    <script>
+                        function myFunction() {
+                            var input, filter, table, tr, td, i, txtValue;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            table = document.getElementById("myTable");
+                            tr = table.getElementsByTagName("tr");
+                            
+                            for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[4];
+                                if (td) {
+                                    txtValue = td.textContent || td.innerText;
+                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                    } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }       
+                            }
+                        }
+                    </script>
+
+                    <script>
+                        $(document).ready(function() {
+                            // When page loads, display what exactly the services table contains.
+                            document.getElementById("table-filter-text").innerHTML = "Προβολή όλων των υπηρεσιών";
+
+                            // Count how many rows the services table contains.
+                            var totalRows = document.getElementById("test").getElementsByTagName("tr").length;
+                            
+                            // Set an onclick() function to each row.
+                            $('#myTable').find('tr').click( function(){
+                                // Find the selected company ID
+                                var selectedCompany = parseInt($(this).find('td:first').text(), 10);
+                                var selectedCompanyName = $(this).find("td").eq(1).text();
+                               
+
+                         
+                                    // For each row in service table
+                                   
+
+                                        // Find the current company ID
+                                        var currentCompany = parseInt($(this).find("td").eq(1).text(), 10);
+
+                                        if( selectedCompany == currentCompany) {
+                                            // All the services associated with the selected company.
+                                            document.getElementById("table-filter-text").innerHTML = "Προβολή των υπηρεσιών της επιχείρησης" + selectedCompanyName + " με ID: " + selectedCompany;
+                                            $(this).show();
+                                        }else {
+                                            // Services rows that are not associated with the specific selected company.
+                                            $(this).hide();
+                                        }
+                                    
+                                        // Always show the services header row
+                                        $('#test').find('tr:first').show();
+                                    });
+                             
+                                
+                            });
+                        });
+                    </script>
                 </div> <!-- End of section-body -->
             </div> <!-- End of section-area -->
         </div> <!-- End of col-md-14 -->

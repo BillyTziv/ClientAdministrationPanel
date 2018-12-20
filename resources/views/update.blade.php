@@ -9,7 +9,7 @@
                 <div class="section-area">
                     <!-- Section heading with the bottom line divider -->
                     <div class="section-heading">
-                        <h1>Ενημέρωση Πελάτη</h1>
+                        <h1>Προσωπικά Στοιχεία</h1>
                         <div class="clientUpdateTitleDivider"></div>
                     </div>
 
@@ -24,7 +24,13 @@
 
                         <form class="client-form" action="{{URL::to('/updateClient')}}" method="POST">
                             {{csrf_field()}}
+                            <img style="display: block;  margin-left: auto; margin-right: auto;" width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png">
+                            </br>
+
                             <table class="form-section" style="width:100%;">
+                                <tr>
+                                    <input style="margin: auto;" type="file" name="fileToUpload" id="fileToUpload"></br>
+                                </tr>
                                 <tr>
                                     <div class="inputWithIcon">
                                         <input type="text" name="clientId" value="{{$clientId}}">
@@ -159,8 +165,18 @@
                             </table> </br>
                             -->
                             <input type="hidden" name="token" value="">
-                            <input type="hidden" name="selRowId" value="{{$selRow}}">
-                            <button style="margin:auto; display:block;" type="submit" class="submitButton" name="button">Ενημερωση</button></br></br>
+                            <input type="hidden" name="selRowId" value="{{$selRow}}"></br>
+
+                            <table>
+                                <tr>
+                                    <td style="width: 225px;">
+                                        <a href="{{URL::to('/home')}}" style="margin:auto; display:block;" class="homeButton">Πισω</a>
+                                    </td>
+                                    <td style="width: 225px;">
+                                        <button style="margin:auto; display:block;" type="submit" class="submitButton" name="button">Ενημερωση</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </form>
                     </div> <!-- End of section-body -->
                 </div> <!-- End of section-area -->

@@ -32,7 +32,7 @@
                     <table class="profile-personal-info">
                         <tr>
                             <td  rowspan="5">
-                                <img style="margin-right: 50px;" width="150px" src="https://content-static.upwork.com/uploads/2014/10/01073427/profilephoto1.jpg" alt="">
+                                <img style="margin-right: 50px;" width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png" alt="">
                             </td>
                             <td style="text-align: center; font-size: 28px; color: white;">{{$clientFirstname}} {{$clientSurname}}</td>
                         </tr>
@@ -150,6 +150,7 @@
                                 @endfor
                             </tbody>
                         </table>
+                            </br> </br>
                     </div>       
                     <script>
                         $(document).ready(function() {
@@ -163,20 +164,31 @@
                             $('#firsttable').find('tr').click( function(){
                                 // Find the selected company ID
                                 var selectedCompany = parseInt($(this).find('td:first').text(), 10);
+                                var selectedCompanyName = $(this).find("td").eq(1).text();
                                 
-                                // For each row in service table
-                                $('#test tr').each(function() {
-                                    // Find the current company ID
-                                    var currentCompany = parseInt($(this).find("td").eq(1).text(), 10);
 
-                                    if( selectedCompany == currentCompany) { // The data i want
-                                        document.getElementById("table-filter-text").innerHTML = "Προβολή των υπηρεσιών της επιχείρησης με ID: " + selectedCompany;
-                                        $(this).show();
-                                    }else { // The data i dont want
-                                        $(this).hide();
-                                    }
-                                    $('#test').find('tr:first').show();
-                                });
+                                // Exclude the first row of companies table which is alwasy NaN
+                                if( !isNaN(selectedCompany)) {
+                                    // For each row in service table
+                                    $('#test tr').each(function() {
+
+                                        // Find the current company ID
+                                        var currentCompany = parseInt($(this).find("td").eq(1).text(), 10);
+
+                                        if( selectedCompany == currentCompany) {
+                                            // All the services associated with the selected company.
+                                            document.getElementById("table-filter-text").innerHTML = "Προβολή των υπηρεσιών της επιχείρησης" + selectedCompanyName + " με ID: " + selectedCompany;
+                                            $(this).show();
+                                        }else {
+                                            // Services rows that are not associated with the specific selected company.
+                                            $(this).hide();
+                                        }
+                                    
+                                        // Always show the services header row
+                                        $('#test').find('tr:first').show();
+                                    });
+                                }
+                                
                             });
                         });
                     </script>

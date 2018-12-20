@@ -35,6 +35,9 @@ Route::post('/insertNewCompany', 'InsertNewCompanyController@insertNewCompany')-
 Route::get('/insertNewService', 'InsertNewServiceController@index')->name('insertNewService');
 Route::post('/insertNewService', 'InsertNewServiceController@insertNewService')->name('insertNewService');
 
+Route::get('/offers', 'OfferController@index')->name('offers');
+
+
 /* Route for updaing the selected client */
 Route::post('/update', 'ClientController@update')->name('update');
 Route::post('/updateClient', 'ClientController@updateClient')->name('updateClient');
