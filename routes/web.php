@@ -41,6 +41,8 @@ Route::get('/offers', 'OfferController@index')->name('offers');
 /* Route for updaing the selected client */
 Route::post('/update', 'ClientController@update')->name('update');
 Route::post('/updateClient', 'ClientController@updateClient')->name('updateClient');
+Route::post('/updateCompanyData', 'UpdateCompanyController@updateCompanyData')->name('updateCompanyData');
+Route::post('/updateServiceData', 'UpdateServiceController@updateServiceData')->name('updateServiceData');
 
 /* Route for displaying the client insert form */
 //Route::get('/update', 'InsertController@index')->name('update');
@@ -48,6 +50,8 @@ Route::post('/updateClient', 'ClientController@updateClient')->name('updateClien
 /* Route for displaying the client insert form */
 //Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::post('/profile', 'ProfileController@update')->name('profile');
+Route::post('/updateCompany', 'UpdateCompanyController@update')->name('updateCompany');
+Route::post('/updateService', 'UpdateServiceController@update')->name('updateService');
 
 /* Route when no file is specified, go to the home page with the client table data */
 Route::post('/', 'HomeController@index')->name('home');

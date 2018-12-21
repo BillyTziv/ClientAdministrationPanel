@@ -21,37 +21,45 @@
 
                     <form class="client-form" action="{{URL::to('/insertNewService')}}" method="POST">
                         {{csrf_field()}}
-                        <h3 class="subtitle fancy" id="firstSubTitle"><span>Επιλογή Πελάτη</span> </h3>
-                        <p style="text-align:center; color: white;">Επιλέξτε τον πελάτη για τον οποίο θέλετε να προσθέσετε μια επιχείρηση.</p>
-                        
-                        <div style="width: 180px; height: 60px; margin-left: auto; margin-right: auto;" >
-                        
-                        <select  name="clientSelected">
-                        <?php
-                            $clientsDataset = DB::select('select * from clients');
-                        
-                            foreach ($clientsDataset as $client) {
-                                echo "<option value=\"" . $client->clientId . "\">" . $client->clientFirstname . " " . $client->clientSurname . "</option>";
-                            }
-                        ?>
-                        </select>
-                        </div>
-                        <h3 class="subtitle fancy" id="firstSubTitle"><span>Επιλογή Επιχείρησης</span> </h3>
-                        <p style="text-align:center; color: white;">Επιλέξτε την επιχείρησης για την οποία θέλετε να προσθέσετε μια υπηρεσία.</p>
+                        <div style="width: 600px; height: 70px; margin-left: auto; margin-right: auto;" >
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h3 style="padding-right: 25px; padding-top: 10px; text-align: right; " id="firstSubTitle">Η νέα υπηρεσία αφορά τον πελάτη </h3>
+                                    </td>
+                                    <td>
+                                        <select style="width: 200px; height: 32px; font-family: Arial; font-size: 14px; border-radius: 3px;"  name="clientSelected">
+                                            <?php
+                                                $clientsDataset = DB::select('select * from clients');
+                                            
+                                                foreach ($clientsDataset as $client) {
+                                                    echo "<option value=\"" . $client->clientId . "\">" . $client->clientFirstname . " " . $client->clientSurname . "</option>";
+                                                }
+                                            ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h3 style="padding-right: 25px; padding-top: 10px; text-align: right;" id="firstSubTitle">και θα ανήκει στην επιχείρηση </h3>
+                                    </td>
+                                    <td>
+                                        <select style="width: 200px; height: 32px; font-family: Arial; font-size: 14px; border-radius: 3px;" name="companySelected">
+                                            <?php
+                                                $companiesDataset = DB::select('select * from companies');
+                                            
+                                                foreach ($companiesDataset as $company) {
+                                                    echo "<option value=\"" . $company->id . "\">" . $company->name . "</option>";
+                                                }
+                                            ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div> </br></br>
 
-                        <div style="width: 180px; height: 30px; margin-left: auto; margin-right: auto;" >
-                        <select  name="companySelected">
-                        <?php
-                            $companiesDataset = DB::select('select * from companies');
-                        
-                            foreach ($companiesDataset as $company) {
-                                echo "<option value=\"" . $company->id . "\">" . $company->name . "</option>";
-                            }
-                        ?>
-                        </select>
-                        </div>
                                    
-                        <h3 class="subtitle fancy"><span>Στοιχεία Υπηρεσίας</span> </h3>
+                        <!-- <h3 class="subtitle fancy"><span>Στοιχεία Υπηρεσίας</span> </h3>-->
                         <table class="form-section" style="width: 100%;">
                             <tr>
                                 <td>
@@ -112,7 +120,16 @@
                             </tr>
                         </table>
                         <input type="hidden" name="token" value="">
-                        <button type="submit" class="submitButton" name="button">Προσθηκη Υπηρεσίας</button></br></br>
+                        <table style="width: 400px; height: 50px; margin: auto;">
+                            <tr>
+                                <td style="width: 225px;">
+                                    <a href="{{URL::to('/home')}}" style="margin:auto; display:block;" class="homeButton">Πισω</a>
+                                </td>
+                                <td style="width: 225px;">
+                                    <button style="margin:auto; display:block;" type="submit" class="submitButton" name="button">Προσθηκη</button>
+                                </td>
+                            </tr>
+                        </table>
                     </form>
                 </div> <!-- End of section-body -->
             </div> <!-- End of section-area -->

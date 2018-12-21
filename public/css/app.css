@@ -199,7 +199,7 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
 }
 
 .submitButton:hover {
-    background-color: #da7407;
+    background-color: #923a0f;
     transition: 0.3s ease;
 }
 
@@ -216,11 +216,14 @@ input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, inpu
     font-weight: bold;
     text-align: center;
     padding-top: 5px;
+
 }
 
 .homeButton:hover {
     background-color: rgb(104, 8, 8);
     transition: 0.3s ease;
+    color: white;
+    text-decoration: none;
 }
 
 
@@ -474,6 +477,21 @@ file: home about: table EDIT and PROFILE ICONS
 }
 
 .editButton:hover {
+    color: #e67d0d;
+    transition: all 0.4s ease-out;
+}
+
+.editProfileButton {
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+    font-size: 18px;
+    
+    background-color: Transparent;
+    background-repeat:no-repeat;
+}
+
+.editProfileButton:hover {
     color: #e67d0d;
     transition: all 0.4s ease-out;
 }

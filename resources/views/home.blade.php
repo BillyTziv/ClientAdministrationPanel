@@ -39,7 +39,7 @@
                                     </div>
                                 </td>
                                 
-                                <td class="totalClients">ΣΥΝΟΛΙΚΟ ΠΕΛΑΤΩΝ: <span style="font-size: 22px; color: white; font-weight: bold;"><?php echo $totalClients; ?></span></td>
+                                <td class="totalClients">ΣΥΝΟΛΙΚΟΙ ΠΕΛΑΤΕΣ: <span style="font-size: 22px; color: white; font-weight: bold;"><?php echo $totalClients; ?></span></td>
                         
                             </tr>
                         </table>
@@ -51,20 +51,22 @@
                             
                             <tr>
                                 <th></th>
-                                <th></th>
                                 <th> <strong>ID</strong></th>
                                 <th><strong>ονομα</strong></th>
                                 <th><strong>Επωνυμο</strong></th>
                                 <th><strong>Email</strong></th>
                                 <th><strong>κινητο</strong></th>
-                                <th><strong>Συνολικος Τζιρος</strong></th>
-                                <th><strong># επιχ</strong></th>
+                                <th><strong>Τζιρος</strong></th>
+                                <th><strong># επ</strong></th>
+                                <th><strong># υπ</strong></th>
                                 <th><strong>Κατασταση</strong></th>
                             </tr>
                         </thead> 
                         <tbody>
                             @for ($i = 0; $i < $totalClients; $i++) 
-                            <tr> <!-- style="background:   #0c7aaf; border: solid 1px #94bace;" -->
+                            <tr>
+                                
+
                                 <td >
                                     <form method="POST" action="{{URL::to('/profile')}}">
                                         {{csrf_field()}}
@@ -72,13 +74,7 @@
                                         <button type="submit" class="profileButton"><i class="fa fa-user" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
-                                <td>
-                                    <form method="POST" action="{{URL::to('/update')}}">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="rowId" value="<?php echo $i+1; ?>">
-                                        <button type="submit" class="editButton"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
+                                
 
                                 <td class="clientsTableID"> <strong><?php echo $data[$i]->clientId; ?></strong> </td>
                                 <td> <?php echo $data[$i]->clientFirstname; ?> </td>
@@ -104,8 +100,21 @@
                                     ?>
                                 </td>
                                 <td> <?php echo $clientTotalCompanies; ?> </td>
-                                <td> <?php echo "ΕΝΕΡΓΟΣ"; ?> </td>
-                                <!--<td > <a target="_blank" href="https://www.<?php //echo $data[$i]->websiteURL; ?>"><i class="fa fa-globe fa-2x" aria-hidden="true"></i> </a> </td>-->
+                                <td> <?php echo $clientTotalCompanies; ?> </td>
+                                <!-- Display the client status with a green or red icon -->
+                                <td> 
+                                    <?php
+                                        // Get the status value from the database.
+                                        $actResult = DB::select("select * from clients where `clientId`='$selectedClient'");
+                                        
+                                        // Check the status value and dispaly the appropriate icon.
+                                        if($actResult[0]->is_active == '1') {
+                                            echo "<i class=\"fa fa-circle  fa-lg\" style=\"color: #1fea00;\" aria-hidden=\"true\"></i>";
+                                        }else {
+                                            echo "<i class=\"fa fa-circle  fa-lg\" style=\"color: #ea0000;\" aria-hidden=\"true\"></i>";
+                                        }
+                                    ?>
+                                </td>
 
                                 <?php
                                     // Get current date

@@ -32,8 +32,8 @@ class ClientController extends Controller
     public function update(Request $request) {
         // Fetch model results based on id
         $selId = $request->rowId;
-        //echo $selId;
-        $data = DB::select("SELECT * FROM clients WHERE `id`='" . $selId . "'");
+        echo $selId;
+        $data = DB::select("SELECT * FROM clients WHERE `clientId`='" . $selId . "'");
         $data[0]->selRow = $selId;
         //print_r ((array)$data[0]);
         return view('update')->with((array)$data[0]);
