@@ -28,7 +28,6 @@
                     ?>
 
                     <!-- Output the total number of clients found -->
-                    <!-- <h4>Σύνολο πελατών: <?php //echo $totalClients ?> </h4> -->
                     <div class="tableBar">
                         <table>
                             <tr>
@@ -60,13 +59,59 @@
                                 <th><strong># επ</strong></th>
                                 <th><strong># υπ</strong></th>
                                 <th><strong>Κατασταση</strong></th>
+                                <th></th>
                             </tr>
                         </thead> 
                         <tbody>
-                            @for ($i = 0; $i < $totalClients; $i++) 
-                            <tr>
-                                
+                            @for ($i = 0; $i < $totalClients; $i++)
+                            <?php
+                                $totalAmmount = 0;              // Total ammount of money that a client gave us.
+                                $firstDate = "";                
+                                $cDate = date('Y-m-d');         // Today
+                                $cTime = strtotime($cDate);     // Today converted in days
+                                $renewList = array();           // List of renew date values for each client.
 
+                                // This block of code calculates some fields located below.
+                                $selectedClient = $data[$i]->clientId;
+                                $clientCompanies = DB::select("select * from companies where `client_id`='$selectedClient'");
+                                $clientTotalCompanies = count($clientCompanies);
+
+                                // Go through all of the client comapanies and count the total ammount of euro.
+
+                                foreach ($clientCompanies as $com) {
+                                    $companyData = DB::select("select SUM(total_cost) as total_cost from services where `company_id`='$com->id'");
+                                    //print_r ($companyData);
+                                    $totalAmmount = $totalAmmount + $companyData[0]->total_cost;
+
+                                    // Get the renew date value from the database.
+                                    $renewDateData = DB::select("select * from services where `company_id`='$com->id'");
+                                    $clientTotalServices = count($renewDateData);
+
+                                    for ($s = 0; $s < $clientTotalServices; $s++) {
+                                        // Convert the renew date value to renew time remaining.
+                                        $rDate = $renewDateData[$s]->renew_date;
+                                        //echo $renewDateData[$s]->renew_date . "</br>";
+                                        $rTime = strtotime($rDate);
+                                        $secs = $cTime - $rTime;
+                                        //echo $secs . "</br>";
+
+                                        $days = $secs / 86400;
+
+                                        //echo $rDate . "</br> </br>";
+                                        if( ($days  < 30) && ($days > -30) ) {
+                                            //echo "<td style=\"background: red; color: white; animation: blinker 1s linear infinite;\" id=\"renewDate\">" . $rDate . "</td>";
+                                            // Add the renew time remaining value to a list.
+                                            array_push($renewList, $rTime);
+                                            //echo "Date added. Date: " . $rDate;
+                                        }
+
+                                        
+                                    }
+                                }
+                               
+
+                            ?>
+                            <tr>
                                 <td >
                                     <form method="POST" action="{{URL::to('/profile')}}">
                                         {{csrf_field()}}
@@ -74,34 +119,14 @@
                                         <button type="submit" class="profileButton"><i class="fa fa-user" aria-hidden="true"></i></button>
                                     </form>
                                 </td>
-                                
-
                                 <td class="clientsTableID"> <strong><?php echo $data[$i]->clientId; ?></strong> </td>
                                 <td> <?php echo $data[$i]->clientFirstname; ?> </td>
                                 <td> <?php echo $data[$i]->clientSurname; ?> </td>
                                 <td> <?php echo $data[$i]->clientEmail; ?> </td>
                                 <td> <?php echo $data[$i]->clientMobile; ?> </td>
-                                
-                                
-                                <td>
-                                    <?php // Client total turnover
-                                        $selectedClient = $data[$i]->clientId;
-                                        $clientCompanies = DB::select("select * from companies where `client_id`='$selectedClient'");
-                                        $clientTotalCompanies = count($clientCompanies);
-
-                                        // Go through all of the client comapanies and count the total ammount of euro.
-                                        $totalAmmount = 0;
-                                        foreach ($clientCompanies as $com) {
-                                            $companyData = DB::select("select SUM(total_cost) as total_cost from services where `company_id`='$com->id'");
-                                            //print_r ($companyData);
-                                            $totalAmmount = $totalAmmount + $companyData[0]->total_cost;
-                                        }
-                                        echo $totalAmmount . " &euro;";
-                                    ?>
-                                </td>
-                                <td> <?php echo $clientTotalCompanies; ?> </td>
-                                <td> <?php echo $clientTotalCompanies; ?> </td>
-                                <!-- Display the client status with a green or red icon -->
+                                <td> <?php echo $totalAmmount . " &euro;"; ?> </td>
+                                <td class="clientsTableID"> <strong><?php echo $clientTotalCompanies; ?></strong> </td>
+                                <td class="clientsTableID"> <strong><?php echo $clientTotalServices; ?></strong> </td>
                                 <td> 
                                     <?php
                                         // Get the status value from the database.
@@ -115,37 +140,11 @@
                                         }
                                     ?>
                                 </td>
-
                                 <?php
-                                    // Get current date
-                                    //$cDate = date('Y-m-d');
-                                    //$cTime = strtotime($cDate);
-                                    //echo  "</br>";
-
-                                    // Get renew date
-                                    //$rDate = $data[$i]->renewDate;
-                                    //$rTime = strtotime($rDate);
-                                    //echo $rTime . "</br>";
-
-                                    //$x = date('2018-12-19');
-                                    //$y = strtotime($x);
-                                    //echo $y . "</br>";
-
-                                    //echo ($cTime - $y) / 86400;
-
-                                    //$secs = $cTime - $rTime;
-                                    //echo $secs . "</br>";
-
-                                    //$days = $secs / 86400;
-                                    //echo $days . "</br>";
-
-                                    //if( ($days  < 30) && ($days > -30) ) {
-                                    //    echo "<td style=\"background: red; color: white; animation: blinker 1s linear infinite;\" id=\"renewDate\">" . $rDate . "</td>";
-                                    //}else {
-                                    //    echo "<td id=\"renewDate\">" . $rDate . "</td>";
-                                    //}
+                                    if( $renewList ) {
+                                        echo "<td style=\"background: red; color: white; animation: blinker 1s linear infinite;\" id=\"renewDate\"><i class=\"fa fa-exclamation-circle fa-2x\"></i></td>";
+                                    }
                                 ?>
-                                
                             </tr>
                            
                             @endfor
@@ -161,7 +160,7 @@
                             tr = table.getElementsByTagName("tr");
                             
                             for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[4];
+                                td = tr[i].getElementsByTagName("td")[3];
                                 if (td) {
                                     txtValue = td.textContent || td.innerText;
                                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
