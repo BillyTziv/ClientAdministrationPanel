@@ -1,15 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid"  >
-    <div class="row"  >
-        <div class="col-md-12">
-            <div class="section-area">
+<div class="section-heading" >
+    <div class="section_subheading">
+        <h1><i class="fa fa-home" aria-hidden="true"></i> Home</h1>
+        <div class="section-heading-divider"></div>
+    </div>
+</div>
+<div class="container-fluid" >
+    <div class="row"   >
+        <div class="col-md-12" >
+            <div class="section-area" >
                 <!-- Section heading with the bottom line divider -->
-                <div class="section-heading">
-                    <h1>Διαχείριση Πελατολογίου</h1>
-                    <div class="section-heading-divider"></div>
-                </div>
+                
 
                 <!-- Check the session status -->
                 <div class="section-body">
@@ -33,13 +36,19 @@
                             <tr>
                                 <td>
                                     <div class="searchbox">
-                                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Αναζήτηση με το επώνυμο...">
+                                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search by lastname...">
                                         <i class="fa fa-search fa-lg" aria-hidden="true"></i>
                                     </div>
                                 </td>
-                                
-                                <td class="totalClients">ΣΥΝΟΛΙΚΟΙ ΠΕΛΑΤΕΣ: <span style="font-size: 22px; color: white; font-weight: bold;"><?php echo $totalClients; ?></span></td>
-                        
+                                <td>  
+                                    <span style="font-size: 15px; color: #222222; padding-left: 180px;">
+                                    <i class="fa fa-circle  fa-lg" style="color: #1fea00;" aria-hidden="true"></i> - Active
+                                    <i class="fa fa-circle  fa-lg" style="color: #ea0000;" aria-hidden="true"></i> - Inactive
+                                    <i class="fa fa-exclamation-triangle fa-lg" style="color: #ea0000;" aria-hidden="true"></i> - Payment Warning
+                                    </span>
+                                </td>
+                                <!--<td class="totalClients">ΣΥΝΟΛΙΚΟΙ ΠΕΛΑΤΕΣ: <span style="font-size: 22px; color: white; font-weight: bold;"><?php echo $totalClients; ?></span></td>
+-->
                             </tr>
                         </table>
                     </div>
@@ -51,14 +60,14 @@
                             <tr>
                                 <th></th>
                                 <th> <strong>ID</strong></th>
-                                <th><strong>ονομα</strong></th>
-                                <th><strong>Επωνυμο</strong></th>
+                                <th><strong>Firstname</strong></th>
+                                <th><strong>Lastname</strong></th>
                                 <th><strong>Email</strong></th>
-                                <th><strong>κινητο</strong></th>
-                                <th><strong>Τζιρος</strong></th>
-                                <th><strong># επ</strong></th>
-                                <th><strong># υπ</strong></th>
-                                <th><strong>Κατασταση</strong></th>
+                                <th><strong>Mobile</strong></th>
+                                <th><strong>Total &euro; </strong></th>
+                                <th><strong>C</strong></th>
+                                <th><strong>S</strong></th>
+                                <th><strong>State</strong></th>
                                 <th></th>
                             </tr>
                         </thead> 
@@ -142,7 +151,9 @@
                                 </td>
                                 <?php
                                     if( $renewList ) {
-                                        echo "<td style=\"background: red; color: white; animation: blinker 1s linear infinite;\" id=\"renewDate\"><i class=\"fa fa-exclamation-circle fa-2x\"></i></td>";
+                                        echo "<td style=\"color: red; animation: blinker 1s linear infinite;\" id=\"renewDate\"><i class=\"fa fa-2x fa-exclamation-triangle\"></i></td>";
+                                    }else {
+                                        echo "<td></td>";
                                     }
                                 ?>
                             </tr>

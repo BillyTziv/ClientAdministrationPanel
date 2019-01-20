@@ -6,9 +6,12 @@
         <div class="col-md-12">
             <div class="section-area">
                 <!-- Section heading with the bottom line divider -->
-                <div class="section-heading">
-                    <h1>Προφιλ Πελάτη</h1>
-                    <div class="section-heading-divider"></div>
+                <div class="section-heading" >
+                    <div class="section_subheading">
+                
+                        <h1><i class="fa fa-user" aria-hidden="true"></i>Client</h1>
+                        <div class="section-heading-divider"></div>
+                    </div>
                 </div>
 
                 <?php
@@ -29,76 +32,87 @@
                     </div>
                     @endif
                     
-                    <table class="profile-personal-info" >
-                        <tr>
-                            <td  rowspan="5">
-                                <img style="margin-right: 50px;" width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png" alt="">
-                            </td>
-                            <td style="text-align: center; font-size: 28px; color: white;">{{$clientFirstname}} {{$clientSurname}}</td>
-                        </tr>
-                        <tr style="font-size: 16px; color: white;">
+                    <div class="profile-pi-table-outer">
+                        <table>
+                            <tr>
+                                <td rowspan="5">
+                                    <img style="text-align: center; margin: auto 35px auto 35px; " width="135px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png" alt="">
+                                </td>
+                                <td colspan="3" class="profile-pi-name">{{$clientFirstname}} {{$clientSurname}}</td>
+                            </tr>
+                            <tr style="font-size: 16px; ">
+                                
+                                <th>Mobile</th>
+                                <td>:</td>
+                                <td>&nbsp; {{$clientMobile}}</td>
+                                <th>Total Companies</th>
+                                <td>:</td>
+                                <td>&nbsp; <?php 
+                                    if( isset($totalCompaniesFound)) {
+                                        echo  $totalCompaniesFound;
+                                    }
+                                    ?> </td>
+                            </tr>
+                            <!-- <tr style="font-size: 16px; color: white;">
                             
-                            <td >Προσωπικό Κινητό</td>
-                            <td>:</td>
-                            <td>&nbsp; {{$clientMobile}}</td>
-                            <td></td>
-                        </tr>
-                        <!-- <tr style="font-size: 16px; color: white;">
-                           
-                            <td>Τηλέφωνο (σταθ):</td>
-                            <td>clientPhone</td>
-                            <td></td>
-                        </tr>-->
-                        <tr style="font-size: 16px; color: white;">
+                                <td>Τηλέφωνο (σταθ):</td>
+                                <td>clientPhone</td>
+                                <td></td>
+                            </tr>-->
+                            <tr style="font-size: 16px; ">
+                                
+                                <th>Email</th>
+                                <td>:</td>
+                                <td>&nbsp; {{$clientEmail}}</td>
+                                <th>Total Services</th>
+                                <td>:</td>
+                                <td>&nbsp; <?php 
+                                    if( isset($totalCompaniesFound)) {
+                                        echo  $totalCompaniesFound;
+                                    }
+                                    ?> </td>
+                            </tr>
+                            <tr style="font-size: 16px;">
+                                <th>Status</td>
+                                <td>:</td>
+                                <td>&nbsp; {{$is_active}}</td>
+                                <td></td>
+                            </tr>
+                            <tr style="font-size: 16px;">
+                                <th>ID</th>
+                                <td>:</td>
+                                <td><strong>&nbsp; {{$clientId}}</strong></td>
+                                
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <form method="POST" action="{{URL::to('/update')}}">
+                                        {{csrf_field()}}
+                                        <input type="hidden" name="rowId" value="<?php echo $clientId; ?>">
+                                        <button type="submit" class="editProfileButton"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile </button>
+                                    </form>
+                                </td>
+                            </tr>
                             
-                            <td>Email</td>
-                            <td>:</td>
-                            <td>&nbsp; {{$clientEmail}}</td>
-                            <td></td>
-                        </tr>
-                        <tr style="font-size: 16px; color: white;">
-                            <td>Πλήθος Καταστημάτων</td>
-                            <td>:</td>
-                            <td>&nbsp; <?php 
-                                if( isset($totalCompaniesFound)) {
-                                    echo  $totalCompaniesFound;
-                                }
-                                ?> </td>
-                            <td></td>
-                        </tr>
-                        <tr style="font-size: 16px; color: white;">
-                            <td>Μοναδικός Αριθμός ID</td>
-                            <td>:</td>
-                            <td><strong>&nbsp; {{$clientId}}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <form method="POST" action="{{URL::to('/update')}}">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="rowId" value="<?php echo $clientId; ?>">
-                                    <button type="submit" class="editProfileButton"><i class="fa fa-pencil" aria-hidden="true"></i> Eπεξεργασία </button>
-                                </form>
-                            </td>
-                            
-                        </tr>
-                    </table>
+                        </table>
+                    </div>
                    
                     <div class="profile-main-section">
-                        <h3 class="profile-subheading"><i class="fa fa-briefcase"></i> <span>Επιχειρήσεις</span><hr> </h3>
-                        <h4 style="padding-left: 25px; color: white;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <i>Μπορείς να επιλέξεις μια επιχείρηση για να δεις τις υπηρεσίες που σχετίζονται με αυτή. </i></h4>
-                        
+                        <h3 class="profile-subheading"><i class="fa fa-briefcase"></i> <span>Companies</span><hr> </h3>
+                        <!-- <h4 style="padding-left: 25px; color: white;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> <i>Μπορείς να επιλέξεις μια επιχείρηση για να δεις τις υπηρεσίες που σχετίζονται με αυτή. </i></h4>
+                                -->
                         <table id="firsttable" class="profile-table" >
                             <thead>
                                 <tr class='clickable-row'>
                                 <th></th>
                                     <th>ID</th>
-                                    <th>Επωνυμια</th>
-                                    <th>Τυπος</th>
-                                    <th>Διευθυνση</th>
-                                    <th>Τηλ (σταθ)</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
                                     <th>Email</th>
                                     <th>Web</th>
-                                    <th>Σχολια</th>
+                                    <th>Comments</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,22 +149,22 @@
                             //echo $totalservices;
                         ?>
 
-                        <h3 class="profile-subheading"><i class="fa fa-gear"></i> <span>Υπηρεσίες</span><hr> </h3>
-                        <div style="color: yellow; font-size: 16px;" id="table-filter-text"></div>
+                        <h3 class="profile-subheading"><i class="fa fa-gear"></i> <span>Services</span><hr> </h3>
+                        <div  id="table-filter-text"></div>
                         <table id="test" class="profile-table">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>ID</th>
-                                    <th>ID Επιχειρησης</th>
-                                    <th>ονομα</th>
-                                    <th>Τυπος</th>
-                                    <th>Ημερ/νια Ανανεωσης</th>
-                                    <th>Συνολικο Κοστος</th>
-                                    <th>Υπολοιπο</th>
-                                    <th>Προκαταβολη</th>
-                                    <th>Κοστος Συντηρησης</th>
-                                    <th>Σχολια</th>
+                                    <th>Company ID</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Renew Date</th>
+                                    <th>Total Cost</th>
+                                    <th>Balance</th>
+                                    <th>DEposit</th>
+                                    <th>Maintenance Cost</th>
+                                    <th>Comments</th>
                                 </tr>
                             </thead>
 

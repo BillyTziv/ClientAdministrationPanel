@@ -5,16 +5,16 @@
     <div class="row"  >
         <div  style="float: none;margin: 0 auto; width: 450px;">
             <div class="col-md-12">
-            
                 <div class="section-area">
                     <!-- Section heading with the bottom line divider -->
-                    <div class="section-heading">
-                        <h1>Προσωπικά Στοιχεία</h1>
-                        <div class="clientUpdateTitleDivider"></div>
+                    <div class="section_subheading">
+                        <h1><i class="fa fa-user" aria-hidden="true"></i>Profile Update</h1>
+                        <div class="section-heading-divider"></div>
                     </div>
-
-                    <!-- Check the session status -->
-                    <div class="section-body">
+                    <div class="insertSection">
+                    <div class="section-heading">
+                        <!-- Check the session status -->
+                        <div class="section-body">
                         @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
@@ -39,147 +39,84 @@
                                 </tr>
                                 <tr>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientFirstname" value="{{$clientFirstname}}" placeholder="Πληκτρολογήσε το όνομα...">
-                                        <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Όνομα:</span></i>
+                                        <input type="text" name="clientFirstname" value="{{$clientFirstname}}" placeholder="Type the firstname...">
+                                        <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">FirstName:</span></i>
                                     </div>
                                 </tr>
                                 <tr>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientSurname" value="{{$clientSurname}}" placeholder="Πληκτρολογήσε το επώνυμο...">
-                                        <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Επώνυμο:</span></i>
+                                        <input type="text" name="clientSurname" value="{{$clientSurname}}" placeholder="Type the lastname...">
+                                        <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">LastName:</span></i>
                                     </div>
                                 </tr>
                                 <tr>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientEmail" value="{{$clientEmail}}" placeholder="Πληκτρολογήσε το κυρίως e-mail...">
+                                        <input type="text" name="clientEmail" value="{{$clientEmail}}" placeholder="Type the email...">
                                         <i class="fa fa-envelope fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Email:</span></i>
                                     </div>
                                 </tr>
                                 <tr>
                                     <div class="inputWithIcon">
-                                        <input type="text" name="clientMobile" value="{{$clientMobile}}" placeholder="Πληκτρολογήσε τον αριθμό του κινητού...">
-                                        <i class="fa fa-phone fa-lg fa-fw"  aria-hidden="true"><span class="clientFieldText">Κινητό:</span></i>
+                                        <input type="text" name="clientMobile" value="{{$clientMobile}}" placeholder="Type the mobile number...">
+                                        <i class="fa fa-phone fa-lg fa-fw"  aria-hidden="true"><span class="clientFieldText">Mobile:</span></i>
                                     </div>
                                 </tr>
+                                <tr>
+                                    <div class="inputWithIcon">
+                                        <input type="text" name="isActive" value="{{$is_active}}" placeholder="Active or Inactive...">
+                                        <i class="fa fa-circle fa-lg fa-fw"  aria-hidden="true"><span class="clientFieldText">Active:</span></i>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="renewText">
+                                            1 - Active Client, 0 - Inactive Client
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!--<tr>
+                                  
+                                    <div class="onoffswitch">
+                                        <?php
+                                            //if($is_active == 1) {
+                                            //    echo "<input type=\"checkbox\" value=\"1\"  name=\"isActive\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch\" checked>";
+                                           // }else {
+                                           //     echo "<input type=\"checkbox\" value=\"0\"  name=\"isActive\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch\">";
+                                          //  }
+                                        ?>
+                                        <label class="onoffswitch-label" for="myonoffswitch">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                  
+                                </tr>-->
                             </table>
-    <!--
-                            <h3 class="subtitle fancy"><span>Στοιχεία Επιχείρησης</span> </h3>
-                            <table class="form-section" style="width: 100%;">
-                                <tr>
-                                    <<td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="clientPhone" value="clientPhone" placeholder="Πληκτρολογήσε τον αριθμό του σταθερού...">
-                                            <i class="fa fa-phone fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Σταθερό:</span></i>
-                                        </div>
-                                    </td>-
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="clientAdrress" value="clientAdrress}}" placeholder="Πληκτρολογήσε την διεύθυνση...">
-                                            <i class="fa fa-map-marker fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Διεύθυνση:</span></i>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="companyName" value="companyName}}" placeholder="Πληκτρολογήσε την επωνυμία της επιχείρησης...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Επωνυμία:</span></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="companyType" value="companyType}}" placeholder="Πληκτρολογήσε τον τύπο της επιχείρησης...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Τύπος:</span></i>
-                                        </div></td>
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="websiteURL" value="websiteURL}}" placeholder="Πληκτρολογήσε το url της ιστοσελίδας...">
-                                            <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Ιστότοπος:</span></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                
-                            <h3 class="subtitle fancy"><span>Στοιχεία Παροχής Υπηρεσιών</span> </h3>
-                            <table class="form-section" style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="services" value="services}}" placeholder="Πληκτρολογήσε τις παρωχημένες υπηρεσίες...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Υπηρεσία:</span></i>
-                                        </div>
-                                    </td>
-                                    <td>   
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="totalPrice" value="totalPrice}}" placeholder="Πληκτρολογήσε την συνολική τιμή...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συνολo:</span></i>
-                                        </div>
-                                    </td>
-                                    <td>   
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="deposit" value="deposit}}" placeholder="Πληκτρολογήσε την προκαταβολή...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Προ/βολή:</span></i>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="balance" value="balance}}" placeholder="Πληκτρολογήσε το υπόλοιπο...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Υπόλοιπο:</span></i>
-                                        </div>
-                                    </td>
-                                    <td> 
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="serverPrice" value="serverPrice}}" placeholder="Πληκτρολογήσε το κόστος συντήρησης του server...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Συντήρηση:</span></i>
-                                        </div>
-                                    </td>
-                                    <td>     
-                                        <div class="inputWithIcon">
-                                            <input type="text" name="comments" value="comments}}" placeholder="Πληκτρολογήσε σχόλια κ σημειώσεις...">
-                                            <i class="fa fa-building fa-lg fa-fw" aria-hidden="true"><span class="clientFieldText">Σχόλια:</span></i>
-                                        </div>
-                                    </td>
-                            
-                                </tr>
-                            </table> </br>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div class="inputWithIcon">
-                                            <label id="dateRenew">Ανανέωση Συνδομής:</label>
-                                            <?php
-                                                //echo "START: " . $renewDate;
-                                                //$repDate = str_replace('/', '-', $renewDate);
-                                            // $transDate = date('Y-m-d', strtotime($repDate));
-                                            ?>
-                                        
-                                            <input type="date" name="renewDate" value="<?php //echo $transDate; ?>">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span id="priceText"><i>Τα χρηματικά ποσά είναι σε €</i></span>
-                                    </td>
-                                </tr>
-                            </table> </br>
-                            -->
-                            <input type="hidden" name="token" value="">
+    
+                     
                             <input type="hidden" name="selRowId" value="{{$selRow}}"></br>
 
-                            <table>
+                            <div class="insertSection"></br>
+                            <table class="form-section">
                                 <tr>
-                                    <td style="width: 225px;">
-                                        <a href="{{URL::to('/home')}}" style="margin:auto; display:block;" class="homeButton">Πισω</a>
+                                    <td>
+                                        <input type="reset" id="resetFields" value="Reset" >
                                     </td>
-                                    <td style="width: 225px;">
-                                        <button style="margin:auto; display:block;" type="submit" class="submitButton" name="button">Ενημερωση</button>
+                                    <td>
+                                        <button type="submit" class="submitButton" name="button">Create</button>
                                     </td>
                                 </tr>
-                            </table>
+                            </table>         
+                            </br>
+                            
+                            
+                            <input type="hidden" name="token" value="">
+                            
+                        </div>
                         </form>
                     </div> <!-- End of section-body -->
                 </div> <!-- End of section-area -->
+                                        </div>
             </div>
         </div> <!-- End of col-md-6 -->
     </div>  <!-- End of row -->

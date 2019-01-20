@@ -13,6 +13,11 @@
 
     <link rel="shortcut icon" href="{{{ asset('favicon.png') }}}">
 
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=greek,greek-ext,latin-ext" rel="stylesheet">
+    
+<link href="https://fonts.googleapis.com/css?family=Roboto&amp;subset=greek,greek-ext" rel="stylesheet">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -99,7 +104,7 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <!-- {{ config('app.name', 'Laravel') }} -->
-                        CodeX AP
+                        Administration Panel v1.0
                     </a>
                 </div>
 
@@ -118,7 +123,7 @@
                             <!-- <li><a href="{{ route('register') }}">Register</a></li>-->
                         @else
                             <li><a class="menu-link" href="{{ route('home') }}"><i class="fa fa-home"></i></a></li>
-                            <li><a class="menu-link" href="{{ route('offers') }}"><i class="fa fa-gift" aria-hidden="true"></i></a></li>
+                            <li><a class="menu-link" href="{{ route('offers') }}"><i class="fa fa-sliders "></i></a></li>
                             <li class="dropdown">
                                 <a href="#" class="menu-link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     <i class="fa fa-plus-circle"></i> 
@@ -126,17 +131,17 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ route('insert') }}">
-                                            Εισαγωγή Πελάτη
+                                            New Client
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('insertNewCompany') }}">
-                                            Εισαγωγή Επιχείρησης
+                                            New Company
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('insertNewService') }}">
-                                            Εισαγωγή Υπηρεσίας
+                                            New Service
                                         </a>
                                     </li>
                                 </ul>

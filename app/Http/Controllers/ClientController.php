@@ -40,27 +40,26 @@ class ClientController extends Controller
     }
 
     public function updateClient(Request $request) {
-        $newDate = $request->input('renewDate');
-        
-        //echo "START: " . $newDate;
-
-        // Transform date to the proper format
-        $repDate = str_replace('/', '-', $newDate);
-        $transDate = date('Y-m-d', strtotime($repDate));
-        //echo "END: " . $transDate;
-
-
-        $result=DB::update("UPDATE clients SET `clientId`=?, `clientFirstname`=?, `clientSurname`=?, `clientEmail`=?, `clientMobile`=? WHERE `id`='" . $request->input('selRowId') ."'", [
+        $result=DB::update("UPDATE clients SET `clientId`=?, `clientFirstname`=?, `clientSurname`=?, `clientEmail`=?, `clientMobile`=?, `is_active`=? WHERE `clientId`='" . $request->input('selRowId') ."'", [
         $request->input('clientId'),
         $request->input('clientFirstname'),
         $request->input('clientSurname'),
-        $request->input('clientEmail'),
-        $request->input('clientMobile')]);
+        $request->input('clientEmail'),  
+        $request->input('clientMobile'),
+        $request->input('isActive')]);
 
         if($result == 1) {
             return view('home');
         }else {
-            echo "Oups, something went wrong. Contact the administrator at email: vtzivaras[at]gmail[dot]com or tel: 6940361613.";
+            echo "Oups, something went wrong. Contact the administrator at email: vtzivaras[at]gmail[dot]com or tel: 6940361613. </br>";
+            echo "Client Id: " . $request->input('clientId') . "</br>";
+            echo "Client FirstName: " . $request->input('clientFirstname') . "</br>";
+            echo "Client LastName: " . $request->input('clientSurname') . "</br>";
+            echo "Client Email: " . $request->input('clientEmail') . "</br>";
+            echo "Client Mobile: " . $request->input('clientMobile') . "</br>";
+            echo "Client Active: " . $request->input('isActive') . "</br>";
+
+            echo "Number of affected rows: " . $result . "</br>";
         }
     }
 }
