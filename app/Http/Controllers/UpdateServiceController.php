@@ -41,7 +41,7 @@ class UpdateServiceController extends Controller
 
     public function updateServiceData(Request $request) {
         // Prepare the sql statement and execute the update query.
-        $serResult=DB::update("UPDATE services SET `company_id`=?, `name`=?, `type`=?, `renew_date`=?, `total_cost`=?, `balance`=?, `deposit`=?, `maintenance_cost`=?, `comments`=?, `client_id`=? WHERE `id`='" . $request->input('sel') ."'", [
+        $serResult=DB::update("UPDATE services SET `company_id`=?, `name`=?, `type`=?, `renew_date`=?, `total_cost`=?, `balance`=?, `deposit`=?, `maintenance_cost`=?, `comments`=?, `client_id`=?, `is_paid`=? WHERE `id`='" . $request->input('sel') ."'", [
         $request->input('company_id'),
         $request->input('name'),
         $request->input('type'),
@@ -51,7 +51,8 @@ class UpdateServiceController extends Controller
         $request->input('deposit'),
         $request->input('maintenance_cost'),
         $request->input('comments'),
-        $request->input('client_id')]);
+        $request->input('client_id'),
+        $request->input('services')]);
 
         if($serResult == 1) {
             return view('home');
